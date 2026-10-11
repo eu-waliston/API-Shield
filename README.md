@@ -2,7 +2,7 @@
 
 ## Intelligent API Security Gateway for Threat Detection, Policy Enforcement and Automated Protection
 
-![API Shield Banner](./docs/banner.png)
+<img width="1774" height="887" alt="Image" src="https://github.com/user-attachments/assets/013d6f7e-e86b-43fe-ac87-9262f6dbca13" />
 
 **API Shield** é um gateway de segurança para APIs desenvolvido com foco em **Web Security, proteção de APIs, detecção de ameaças e resposta automatizada**.
 
