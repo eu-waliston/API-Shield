@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>API Shield — Intelligent API Security Gateway</title>
+<meta name="description" content="Gateway de segurança para APIs com detecção de ameaças, aplicação de políticas, rate limiting e resposta automatizada." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body id="top">
+
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="API Shield — início">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2.2 4.6 5.3v5.5c0 4.6 3.1 9 7.4 10.9 4.3-1.9 7.4-6.3 7.4-10.9V5.3L12 2.2Z"
+              stroke="#22d3ee" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="m9.2 12.1 2 2 3.6-3.9" stroke="#4ade80" stroke-width="1.7"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>API<b>Shield</b></span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#recursos">Recursos</a>
+      <a href="#arquitetura">Arquitetura</a>
+      <a href="#deteccao">Detecção</a>
+      <a href="#politicas">Políticas</a>
+      <a href="#stack">Stack</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#start">Começar</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a class="btn btn-ghost" href="https://github.com/eu-waliston/API-SHIELD" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 .5C5.7.5.7 5.6.7 11.9c0 5 3.3 9.3 7.8 10.8.6.1.8-.2.8-.5v-2c-3.2.7-3.8-1.4-3.8-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.3.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.5-1.5 7.8-5.8 7.8-10.8C23.3 5.6 18.3.5 12 .5Z"/>
+        </svg>
+        GitHub
+      </a>
+      <a class="btn btn-primary" href="#start">Começar</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="pill">
+        <span class="dot"></span>
+        <span>23 testes passando · 0 falhas</span>
+      </div>
+
+      <h1>
+        <span class="grad">API Shield</span>
+        <span class="line2">Gateway inteligente de segurança para APIs</span>
+      </h1>
+
+      <p class="lead">
+        Detecção de ameaças, aplicação de políticas e proteção automatizada.
+        Uma camada defensiva entre clientes e serviços backend que analisa requisições,
+        identifica comportamentos suspeitos e responde a incidentes em tempo real.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="#start">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+          Começar agora
+        </a>
+        <a class="btn btn-ghost btn-lg" href="#arquitetura">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>
+          </svg>
+          Ver arquitetura
+        </a>
+      </div>
+
+      <div class="hero-tags">
+        <span class="tag">Node.js</span>
+        <span class="tag">Express</span>
+        <span class="tag">JWT</span>
+        <span class="tag">Redis</span>
+        <span class="tag">Docker</span>
+        <span class="tag">ES Modules</span>
+      </div>
+    </div>
+
+    <!-- Terminal -->
+    <div class="term" role="img" aria-label="Exemplo de log de segurança do API Shield">
+      <div class="term-bar">
+        <i></i><i></i><i></i>
+        <span class="term-title">api-shield — security telemetry</span>
+      </div>
+      <div class="term-body" id="terminal">
+        <span class="ln c-dim">$ curl -H <span class="c-green">"Authorization: Bearer eyJhbGci…"</span> \</span>
+        <span class="ln c-dim">        https://api.shield/v1/users</span>
+        <span class="ln">&nbsp;</span>
+        <span class="ln"><span class="c-green">[200]</span> <span class="c-cyan">GET</span>  /v1/users        <span class="c-dim">scope=read · 12ms</span></span>
+        <span class="ln"><span class="c-amber">[429]</span> <span class="c-cyan">POST</span> /v1/login        <span class="c-dim">rate_limit_exceeded</span></span>
+        <span class="ln"><span class="c-red">[403]</span> <span class="c-cyan">GET</span>  /admin           <span class="c-dim">policy:block-admin-route</span></span>
+        <span class="ln"><span class="c-red">[403]</span> <span class="c-cyan">GET</span>  /internal/debug  <span class="c-dim">route_discovery</span></span>
+        <span class="ln">&nbsp;</span>
+        <span class="ln"><span class="c-violet">[!]</span> threat  <span class="c-violet">multi_signal_correlation</span></span>
+        <span class="ln c-dim">    failed_login + forbidden + rate_limit</span>
+        <span class="ln c-dim">    risk_score = <span class="c-red">87</span> / 100</span>
+        <span class="ln">&nbsp;</span>
+        <span class="ln"><span class="c-red">[✕]</span> ip <span class="c-amber">203.0.113.42</span> <span class="c-red">blocked</span> <span class="c-dim">for 60s</span></span>
+        <span class="ln"><span class="c-green">[✓]</span> security_event created · alert dispatched</span>
+        <span class="ln"><span class="cursor"></span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat rv"><span class="num">23</span><div class="lbl">Testes automatizados</div></div>
+      <div class="stat rv"><span class="num">0</span><div class="lbl">Falhas</div></div>
+      <div class="stat rv"><span class="num">60/60s</span><div class="lbl">Rate limit padrão</div></div>
+      <div class="stat rv"><span class="num">8</span><div class="lbl">Fases concluídas</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RECURSOS ================= -->
+<section id="recursos">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Principais recursos</span>
+      <h2>Tudo o que um gateway defensivo precisa</h2>
+      <p>Uma arquitetura moderna de proteção de APIs, combinando autenticação, políticas, análise comportamental e telemetria de segurança em um único ponto de controle.</p>
+    </div>
+
+    <div class="grid-3">
+      <article class="card rv">
+        <div class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="10.5" width="16" height="10" rx="2.2"/>
+            <path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/><circle cx="12" cy="15.5" r="1.3"/>
+          </svg>
+        </div>
+        <h3>Authentication &amp; Authorization</h3>
+        <p>Autenticação baseada em JWT com controle de escopos, proteção de endpoints sensíveis e tokens administrativos separados.</p>
+        <div class="mini"><span>JWT</span><span>scopes</span><span>admin token</span></div>
+      </article>
+
+      <article class="card rv">
+        <div class="ico g">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>
+            <circle cx="12" cy="12" r="3.4"/>
+          </svg>
+        </div>
+        <h3>Rate Limiting</h3>
+        <p>Controle de abuso distribuído com Redis. Protege contra requisições excessivas, brute force e ataques automatizados.</p>
+        <div class="mini"><span>Redis</span><span>60 req / 60s</span><span>configurável</span></div>
+      </article>
+
+      <article class="card rv">
+        <div class="ico r">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2.6 4.8 5.6v5.2c0 4.4 3 8.6 7.2 10.4 4.2-1.8 7.2-6 7.2-10.4V5.6L12 2.6Z"/>
+            <path d="M12 8.4v4.2M12 15.6v.1"/>
+          </svg>
+        </div>
+        <h3>Threat Detection</h3>
+        <p>Análise comportamental contínua com detecção de padrões de ataque e correlação multi-sinal para cálculo de risco.</p>
+        <div class="mini"><span>behavioral</span><span>risk score</span><span>correlation</span></div>
+      </article>
+
+      <article class="card rv">
+        <div class="ico a">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.5 3.5h5v5M19.5 3.5 13 10"/>
+            <path d="M9.5 20.5h-5v-5M4.5 20.5 11 14"/>
+            <path d="M4 9.5v-3A2.5 2.5 0 0 1 6.5 4H9M20 14.5v3a2.5 2.5 0 0 1-2.5 2.5H15"/>
+          </svg>
+        </div>
+        <h3>Policy Engine</h3>
+        <p>Regras de segurança configuráveis com allow/deny, políticas por rota, validação de escopo e bloqueio temporário.</p>
+        <div class="mini"><span>allow / deny</span><span>route-based</span><span>JSON</span></div>
+      </article>
+
+      <article class="card rv">
+        <div class="ico v">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 20h18"/><rect x="4.5" y="12" width="3.4" height="6" rx="1"/>
+            <rect x="10.3" y="8" width="3.4" height="10" rx="1"/><rect x="16.1" y="4.5" width="3.4" height="13.5" rx="1"/>
+          </svg>
+        </div>
+        <h3>Security Telemetry</h3>
+        <p>Todos os eventos relevantes são registrados: requisições suspeitas, alertas, violações de política e decisões de segurança.</p>
+        <div class="mini"><span>events</span><span>alerts</span><span>incidents</span></div>
+      </article>
+
+      <article class="card rv">
+        <div class="ico r">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2 4.5 13.2h6.2L10 22l9.5-11.4h-6.4L13 2Z"/>
+          </svg>
+        </div>
+        <h3>Automated Response</h3>
+        <p>Resposta defensiva imediata: bloqueio temporário de IP, negação de requisições, criação de alertas e registro de incidentes.</p>
+        <div class="mini"><span>auto block</span><span>deny</span><span>alerting</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ARQUITETURA ================= -->
+<section id="arquitetura">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Arquitetura</span>
+      <h2>Uma camada defensiva antes dos seus serviços</h2>
+      <p>O API Shield intercepta cada requisição e a submete a uma cadeia de verificações antes de permitir o acesso ao backend.</p>
+    </div>
+
+    <div class="arch">
+      <div class="flow rv" id="flow">
+        <div class="node" data-flow>Internet<span class="sub">Client</span></div>
+        <div class="connector"></div>
+        <div class="node" data-flow>API Shield<span class="sub">Security Layer</span></div>
+        <div class="connector"></div>
+        <div class="branches">
+          <div class="branch" data-flow><b>Auth</b>JWT · scopes</div>
+          <div class="branch" data-flow><b>Policies</b>Rules Engine</div>
+          <div class="branch" data-flow><b>Detection</b>Threat Engine</div>
+        </div>
+        <div class="connector"></div>
+        <div class="node" data-flow>Backend APIs<span class="sub">Services</span></div>
+      </div>
+
+      <div class="arch-notes rv">
+        <ul>
+          <li>
+            <span class="k">01</span>
+            <div>
+              <h4>Interceptação total</h4>
+              <p>Nenhuma requisição alcança o backend sem passar pela cadeia de segurança do gateway.</p>
+            </div>
+          </li>
+          <li>
+            <span class="k">02</span>
+            <div>
+              <h4>Decisão em camadas</h4>
+              <p>Autenticação, política, rate limiting e detecção operam em sequência, cada uma podendo negar a requisição.</p>
+            </div>
+          </li>
+          <li>
+            <span class="k">03</span>
+            <div>
+              <h4>Telemetria contínua</h4>
+              <p>Cada decisão é registrada no Redis, alimentando alertas, incidentes e o dashboard operacional.</p>
+            </div>
+          </li>
+          <li>
+            <span class="k">04</span>
+            <div>
+              <h4>Resposta automatizada</h4>
+              <p>Ao identificar ameaça, o sistema bloqueia, nega e notifica — sem intervenção humana imediata.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DETECÇÃO ================= -->
+<section id="deteccao">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Threat Detection Engine</span>
+      <h2>Análise comportamental, não apenas regras</h2>
+      <p>O motor de detecção observa padrões ao longo do tempo e combina sinais independentes para identificar atividade de alto risco.</p>
+    </div>
+
+    <div class="grid-3">
+      <article class="card rv">
+        <div class="ico r">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="10.5" width="16" height="10" rx="2.2"/>
+            <path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/><path d="M12 14.5v2.5"/>
+          </svg>
+        </div>
+        <h3>Authentication Attack</h3>
+        <p>Excesso de falhas de autenticação em curto intervalo indica tentativa de brute force ou credential stuffing.</p>
+        <div class="mini"><span>failed_login</span><span>threshold</span><span>window</span></div>
+      </article>
+
+      <article class="card rv">
+        <div class="ico a">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/>
+          </svg>
+        </div>
+        <h3>Route Discovery Attack</h3>
+        <p>Exploração sistemática de endpoints sensíveis em busca de superfície exposta.</p>
+        <div class="mini"><span>/users</span><span>/admin</span><span>/internal</span><span>/debug</span><span>/config</span></div>
+      </article>
+
+      <article class="card rv">
+        <div class="ico v">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/>
+            <path d="M8.2 7.3 10.4 16M15.8 7.3 13.6 16M8.5 6h7"/>
+          </svg>
+        </div>
+        <h3>Multi-Signal Correlation</h3>
+        <p>Sinais isolados podem ser ruído. Combinados, revelam atividade de alto risco com muito mais precisão.</p>
+        <div class="mini"><span>correlation</span><span>risk scoring</span></div>
+      </article>
+    </div>
+
+    <div class="corr rv">
+      <div class="corr-list">
+        <div class="corr-item"><i style="background:var(--amber)"></i>Failed Login</div>
+        <div class="corr-item"><i style="background:var(--red)"></i>Forbidden Request</div>
+        <div class="corr-item"><i style="background:var(--violet)"></i>Rate Limit Violation</div>
+      </div>
+      <div class="corr-eq">=</div>
+      <div class="risk">
+        <div class="score">87</div>
+        <div class="lbl">High Risk Activity</div>
+        <div class="bar"><i></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= POLÍTICAS ================= -->
+<section id="politicas">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Policy Engine</span>
+      <h2>Regras de segurança declarativas</h2>
+      <p>Defina políticas em JSON simples: allow/deny, controle por rota, validação de escopo, bloqueios temporários e controles administrativos.</p>
+    </div>
+
+    <div class="grid-3" style="grid-template-columns:1fr 1.15fr;align-items:start">
+      <div class="rv">
+        <div class="code">
+          <div class="code-head">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m8 6-6 6 6 6M16 6l6 6-6 6"/>
+            </svg>
+            policies.json
+            <span class="lang">json</span>
+          </div>
+<pre><code>[
+  {
+    <span class="k">"id"</span>: <span class="s">"block-admin-route"</span>,
+    <span class="k">"enabled"</span>: <span class="n">true</span>,
+    <span class="k">"action"</span>: <span class="s">"deny"</span>,
+    <span class="k">"match"</span>: {
+      <span class="k">"routePrefix"</span>: <span class="s">"/admin"</span>
+    }
+  }
+]</code></pre>
+        </div>
+      </div>
+
+      <div class="rv">
+        <ul class="arch-notes">
+          <li>
+            <span class="k">▸</span>
+            <div><h4>Allow / Deny rules</h4><p>Decisões explícitas de permissão ou bloqueio por regra.</p></div>
+          </li>
+          <li>
+            <span class="k">▸</span>
+            <div><h4>Route-based policies</h4><p>Políticas aplicadas por prefixo de rota ou endpoint específico.</p></div>
+          </li>
+          <li>
+            <span class="k">▸</span>
+            <div><h4>Scope validation</h4><p>Verificação de escopos do token JWT antes de liberar a requisição.</p></div>
+          </li>
+          <li>
+            <span class="k">▸</span>
+            <div><h4>Temporary blocking</h4><p>Bloqueios com expiração automática para contenção rápida.</p></div>
+          </li>
+          <li>
+            <span class="k">▸</span>
+            <div><h4>Administrative controls</h4><p>Endpoints administrativos protegidos por token dedicado.</p></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESPOSTA AUTOMATIZADA ================= -->
+<section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Automated Response</span>
+      <h2>Da detecção à contenção em milissegundos</h2>
+      <p>Quando uma ameaça é identificada, o API Shield executa uma sequência defensiva automatizada.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step rv">
+        <span class="idx">STEP <b>01</b></span>
+        <h4>Detecção</h4>
+        <p>IP suspeito identificado pelo motor de análise comportamental.</p>
+      </div>
+      <div class="step rv">
+        <span class="idx">STEP <b>02</b></span>
+        <h4>Bloqueio temporário</h4>
+        <p>Requisições do IP são negadas por uma janela de tempo definida.</p>
+      </div>
+      <div class="step rv">
+        <span class="idx">STEP <b>03</b></span>
+        <h4>Security Event</h4>
+        <p>O incidente é registrado no Redis com todos os sinais correlacionados.</p>
+      </div>
+      <div class="step rv">
+        <span class="idx">STEP <b>04</b></span>
+        <h4>Revisão do administrador</h4>
+        <p>Alertas são exibidos no dashboard para análise e ação humana.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STACK ================= -->
+<section id="stack">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Tecnologias</span>
+      <h2>Stack enxuta, focada em segurança</h2>
+      <p>Ferramentas consolidadas no ecossistema Node.js, escolhidas por maturidade e clareza operacional.</p>
+    </div>
+
+    <div class="stack-grid">
+      <div class="stack-col rv">
+        <h4>Backend</h4>
+        <ul>
+          <li>Node.js</li>
+          <li>Express.js</li>
+          <li>JavaScript ES Modules</li>
+        </ul>
+      </div>
+      <div class="stack-col rv">
+        <h4>Security</h4>
+        <ul>
+          <li>JWT Authentication</li>
+          <li>Helmet</li>
+          <li>Rate Limiting</li>
+          <li>Security Headers</li>
+          <li>Policy Enforcement</li>
+        </ul>
+      </div>
+      <div class="stack-col rv">
+        <h4>Storage</h4>
+        <ul>
+          <li>Redis</li>
+          <li>Security Events</li>
+          <li>Alerts &amp; Incidents</li>
+        </ul>
+      </div>
+      <div class="stack-col rv">
+        <h4>Infra &amp; Testes</h4>
+        <ul>
+          <li>Docker</li>
+          <li>Docker Compose</li>
+          <li>Node Test Runner</li>
+          <li>Automated Security Tests</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ROADMAP ================= -->
+<section id="roadmap">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Roadmap</span>
+      <h2>Oito fases, todas concluídas</h2>
+      <p>Do gateway base até a prontidão operacional para deploy em produção.</p>
+    </div>
+
+    <div class="road">
+      <div class="phase rv">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg> PHASE 1</div>
+        <h4>Foundation</h4>
+        <ul><li>Gateway base</li><li>Estrutura inicial</li><li>Configuração</li></ul>
+      </div>
+      <div class="phase rv">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg> PHASE 2</div>
+        <h4>Gateway Security</h4>
+        <ul><li>JWT</li><li>Scopes</li><li>Rate Limiting</li></ul>
+      </div>
+      <div class="phase rv">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg> PHASE 3</div>
+        <h4>Threat Intelligence</h4>
+        <ul><li>Eventos</li><li>Correlação</li><li>Risk Score</li></ul>
+      </div>
+      <div class="phase rv">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg> PHASE 4</div>
+        <h4>Security Console</h4>
+        <ul><li>Dashboard</li><li>Telemetria</li><li>Incidentes</li></ul>
+      </div>
+      <div class="phase rv">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg> PHASE 5</div>
+        <h4>Policy Engine</h4>
+        <ul><li>Regras</li><li>Bloqueios</li><li>Respostas automáticas</li></ul>
+      </div>
+      <div class="phase rv">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg> PHASE 6</div>
+        <h4>Advanced Detection</h4>
+        <ul><li>Behavioral Detection</li><li>Multi-signal Analysis</li></ul>
+      </div>
+      <div class="phase rv">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg> PHASE 7</div>
+        <h4>Hardening</h4>
+        <ul><li>Security Validation</li><li>Defensive Improvements</li></ul>
+      </div>
+      <div class="phase rv">
+        <div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg> PHASE 8</div>
+        <h4>Production Deployment</h4>
+        <ul><li>Docker</li><li>Deployment Architecture</li><li>Operational Readiness</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUICK START ================= -->
+<section id="start">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Executando com Docker</span>
+      <h2>Rodando em menos de dois minutos</h2>
+      <p>Clone, configure os segredos e suba o ambiente completo com Docker Compose.</p>
+    </div>
+
+    <div class="qs">
+      <div class="qs-steps rv">
+        <div class="qs-step">
+          <span class="no">1</span>
+          <div><h4>Clone o projeto</h4><p>Repositório público no GitHub.</p></div>
+        </div>
+        <div class="qs-step">
+          <span class="no">2</span>
+          <div><h4>Crie o ambiente</h4><p>Copie o <code>.env.example</code> para <code>.env</code>.</p></div>
+        </div>
+        <div class="qs-step">
+          <span class="no">3</span>
+          <div><h4>Gere seus segredos</h4><p>Use <code>openssl rand -hex 32</code> para cada chave.</p></div>
+        </div>
+        <div class="qs-step">
+          <span class="no">4</span>
+          <div><h4>Suba os containers</h4><p>Build e execução em background.</p></div>
+        </div>
+        <div class="qs-step">
+          <span class="no">5</span>
+          <div><h4>Verifique a saúde</h4><p>Um <code>curl</code> no endpoint <code>/health</code> confirma o funcionamento.</p></div>
+        </div>
+
+        <div class="callout">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 9v4M12 17v.01"/><path d="M10.3 3.9 2.6 17.2A2 2 0 0 0 4.3 20.2h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/>
+          </svg>
+          <p>Nunca faça commit do arquivo <code>.env</code>. Gere segredos fortes e exclusivos para cada ambiente de execução.</p>
+        </div>
+      </div>
+
+      <div class="rv">
+        <div class="code">
+          <div class="code-head">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m4 17 6-6-6-6M12 19h8"/>
+            </svg>
+            terminal
+            <button class="cp" data-copy="#cmd1" type="button">COPIAR</button>
+          </div>
+<pre id="cmd1"><code><span class="c"># 1. clonar</span>
+git clone https://github.com/eu-waliston/API-SHIELD.git
+cd API-SHIELD
+
+<span class="c"># 2. ambiente</span>
+cp .env.example .env
+
+<span class="c"># 3. segredos</span>
+openssl rand -hex 32
+
+<span class="c"># 4. subir</span>
+docker compose up --build -d
+
+<span class="c"># 5. verificar</span>
+docker compose ps
+curl http://127.0.0.1:3000/health</code></pre>
+        </div>
+
+        <div class="code" style="margin-top:16px">
+          <div class="code-head">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 4v16"/>
+            </svg>
+            .env
+            <span class="lang">dotenv</span>
+          </div>
+<pre><code><span class="f">JWT_SECRET</span>=<span class="s">&lt;openssl rand -hex 32&gt;</span>
+<span class="f">ADMIN_API_TOKEN</span>=<span class="s">&lt;openssl rand -hex 32&gt;</span>
+<span class="f">REDIS_PASSWORD</span>=<span class="s">&lt;openssl rand -hex 32&gt;</span></code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECURITY CONSIDERATIONS ================= -->
+<section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Security Considerations</span>
+      <h2>Postura defensiva por padrão</h2>
+      <p>O projeto segue boas práticas de desenvolvimento seguro — e documenta o que ainda é necessário para ambientes reais.</p>
+    </div>
+
+    <div class="sec-two">
+      <div class="sec-card ok rv">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2.6 4.8 5.6v5.2c0 4.4 3 8.6 7.2 10.4 4.2-1.8 7.2-6 7.2-10.4V5.6L12 2.6Z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+          Aplicado no projeto
+        </h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg> Containers não executam como root</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg> Segredos nunca armazenados no código</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg> Validação de entradas administrativas</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg> Sem exposição de informações internas</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg> Security headers via Helmet</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg> Princípio do menor privilégio</li>
+        </ul>
+      </div>
+
+      <div class="sec-card warn rv">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 9v4M12 17v.01"/>
+            <path d="M10.3 3.9 2.6 17.2A2 2 0 0 0 4.3 20.2h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/>
+          </svg>
+          Recomendado para produção
+        </h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg> TLS obrigatório</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg> Reverse proxy seguro</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg> Monitoramento externo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg> Rotação periódica de credenciais</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg> Pentest periódico</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section>
+  <div class="wrap">
+    <div class="cta-box rv">
+      <h2>Pronto para blindar suas APIs?</h2>
+      <p>Explore o código, rode os testes e veja o gateway em ação. Sugestões, melhorias e discussões sobre segurança são muito bem-vindas.</p>
+      <div class="cta-actions">
+        <a class="btn btn-primary btn-lg" href="https://github.com/eu-waliston/API-SHIELD" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 .5C5.7.5.7 5.6.7 11.9c0 5 3.3 9.3 7.8 10.8.6.1.8-.2.8-.5v-2c-3.2.7-3.8-1.4-3.8-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.3.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.5-1.5 7.8-5.8 7.8-10.8C23.3 5.6 18.3.5 12 .5Z"/>
+          </svg>
+          Ver no GitHub
+        </a>
+        <a class="btn btn-ghost btn-lg" href="#start">Guia de instalação</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap foot">
+    <div class="who">
+      <div class="avatar">W</div>
+      <div>
+        <b>Waliston</b>
+        <span>Fullstack Developer · Software Engineer · Cybersecurity</span>
+      </div>
+    </div>
+    <div class="foot-links">
+      <a href="https://github.com/eu-waliston" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/eu-waliston/API-SHIELD" target="_blank" rel="noopener">API Shield</a>
+      <a href="#top">Voltar ao topo</a>
+    </div>
+    <p>Projetos de segurança evoluem através de revisão constante, testes e colaboração.</p>
+  </div>
+</footer>
+
+<script src="script/script.js"></script>
+</body>
+</html>
