@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>API Shield · Security Console</title>
+  <link rel="stylesheet" href="/dashboard/styles.css">
+  <script src="/dashboard/dashboard.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand-mark">AS</div>
+      <div><p class="eyebrow">SECURITY OPERATIONS</p><h1>API Shield <span>Console</span></h1></div>
+      <div class="live"><i></i> TELEMETRIA</div>
+    </header>
+    <section class="intro">
+      <div><p class="eyebrow">PHASE 04 / INCIDENT RESPONSE</p><h2>Visibilidade sobre o que<br><em>está tentando quebrar sua API.</em></h2>
+      <p class="muted">Eventos persistidos, alertas correlacionados e fluxo de investigação em um único painel.</p></div>
+      <div class="shield-art" aria-hidden="true">⬡<b>✓</b></div>
+    </section>
+    <section class="auth-panel">
+      <label for="token">Token administrativo</label>
+      <div class="token-row"><input id="token" type="password" autocomplete="off" placeholder="Cole ADMIN_API_TOKEN aqui"><button id="connect">Conectar</button></div>
+      <p id="status" class="status">Aguardando autenticação. O token fica somente nesta página.</p>
+    </section>
+    <section class="metrics" aria-label="Indicadores">
+      <article class="metric"><span>EVENTOS ARMAZENADOS</span><strong id="event-count">—</strong><small>Retenção configurada no Redis</small></article>
+      <article class="metric"><span>ALERTAS REGISTRADOS</span><strong id="alert-count">—</strong><small>Histórico limitado por configuração</small></article>
+      <article class="metric"><span>ALERTAS ABERTOS</span><strong id="open-count">—</strong><small id="critical-note">Críticos abertos: —</small></article>
+    </section>
+
+    <section class="panel policy-panel">
+      <div class="panel-heading"><div><p class="eyebrow">POLICY ENGINE</p><h3>Controles de resposta</h3></div><span class="count-tag">ADMINISTRATIVO</span></div>
+      <div class="policy-controls">
+        <div><label for="block-ip">Bloquear IP temporariamente</label><div class="control-row"><input id="block-ip" placeholder="Ex.: 203.0.113.10"><input id="block-ttl" type="number" min="1" max="86400" value="900" aria-label="TTL em segundos"><button id="block-button">Bloquear</button></div><small>TTL em segundos, máximo de 86400 (24 horas).</small></div>
+        <div><label for="unblock-ip">Remover bloqueio</label><div class="control-row"><input id="unblock-ip" placeholder="IP bloqueado"><button id="unblock-button" class="subtle">Desbloquear</button></div></div>
+      </div>
+      <div class="policy-heading"><h4>Políticas ativas</h4><button id="load-policies" class="subtle">Carregar políticas</button></div>
+      <pre id="policy-json" class="policy-json">Conecte com o token administrativo para consultar as políticas.</pre>
+      <label for="policy-editor">Editar políticas (JSON)</label>
+      <textarea id="policy-editor" spellcheck="false" rows="9">[
+  {
+    "id": "deny-admin-route",
+    "enabled": false,
+    "action": "deny",
+    "match": { "routePrefix": "/v1/admin" },
+    "description": "Example deny rule; disabled by default"
+  }
+]</textarea>
+      <button id="save-policies">Validar e salvar políticas</button>
+      <p class="muted policy-help">A primeira política habilitada que corresponder vence. Uma política deny rejeita a requisição. Teste regras em ambiente local antes de ativá-las.</p>
+    </section>
+    <section class="content-grid">
+      <article class="panel">
+        <div class="panel-heading"><div><p class="eyebrow">DETECTION OUTPUT</p><h3>Alertas de segurança</h3></div><button class="subtle" id="refresh">Atualizar ↻</button></div>
+        <div class="table-wrap"><table><thead><tr><th>RISCO</th><th>REGRA / ALVO</th><th>OCORRÊNCIAS</th><th>STATUS</th><th>INVESTIGAÇÃO</th></tr></thead><tbody id="alerts"><tr><td colspan="5" class="empty">Conecte com o token administrativo para carregar os dados.</td></tr></tbody></table></div>
+      </article>
+      <article class="panel events-panel">
+        <div class="panel-heading"><div><p class="eyebrow">SIGNAL STREAM</p><h3>Eventos recentes</h3></div><span class="count-tag">ÚLTIMOS 20</span></div>
+        <div id="events" class="event-list"><p class="empty">Sem eventos carregados.</p></div>
+      </article>
+    </section>
+    <footer><span>API SHIELD / DEFENSIVE SECURITY</span><span>Use somente em sistemas autorizados.</span></footer>
+  </main>
+</body>
+</html>

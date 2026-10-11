@@ -1,0 +1,26 @@
+{
+  "name": "api-shield",
+  "version": "0.8.0",
+  "private": true,
+  "description": "Production-oriented defensive API security gateway with Docker deployment",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "http-proxy-middleware": "^3.0.5",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "redis": "^4.7.0"
+  },
+  "devDependencies": {
+    "supertest": "^7.1.1"
+  }
+}
